@@ -5,13 +5,15 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@react-three/drei": "^3.10.2",
     "drei": "0.0.40",
     "lerp": "1.0.3",
     "react": "experimental",
     "react-dom": "experimental",
     "react-scripts": "3.2.0",
     "react-three-fiber": "4.2.5",
-    "three": "0.116.1"
+    "store": "^2.0.12",
+    "three": "^0.126.0"
   },
   "devDependencies": {
     "typescript": "3.3.3"
