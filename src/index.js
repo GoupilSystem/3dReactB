@@ -2,9 +2,6 @@ import ReactDOM from "react-dom"
 import React, { Suspense, useRef, useState } from "react"
 import { Canvas, useFrame, useThree } from "react-three-fiber"
 import * as THREE from "three"
-import Sphere from "./sphere";
-import Ship from "./ship";
-import { CarPart } from "./carPart";
 import { Car } from "./car";
 import { Map } from "./map";
 import usePromise from "react-promise-suspense";
@@ -96,7 +93,7 @@ const Fallback = () => (
 )
 
 ReactDOM.render(
-  <Canvas invalidateFrameloop style={{ background: "#0e0e0f" }} camera={{ position: [0, 0, 10] }}>
+  <Canvas invalidateFrameloop style={{ background: "#d5d5e5" }} orthographic camera={{ position: [-7, 0, 2] }}>
     <OrbitControls
       enableDamping={true}
       dampingFactor={0.25}
