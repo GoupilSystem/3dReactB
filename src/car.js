@@ -32,7 +32,7 @@ function shadeColor(color, percent) {
 }
 
 export const Car = ({ time, ...props }) => {
-  const gltf = useLoader(GLTFLoader, '/carrito.gltf')
+  const gltf = useLoader(GLTFLoader, '/car.gltf')
   const ref = useRef()
 
   const [currentColor, setCurrentColor] = useState(props.color);
@@ -70,6 +70,29 @@ export const Car = ({ time, ...props }) => {
     return (
       <mesh
         {...props}
+        castShadow
+        onClick={onMeshClick}
+        onPointerOver={hover}
+        onPointerOut={unhover}
+        material={hovered ? hoverMaterial : defaultMaterial}>
+        <bufferGeometry attach="geometry" {...gltf.__$[props.index].geometry} />
+      </mesh>
+    )
+  }
+
+  return (
+    <group ref={ref}>
+      <group position={[0,-0.25,0]} scale={[1,1,1]}>
+        <Model />
+      </group>
+    </group>
+  )
+}
+
+/*
+return (
+      <mesh
+        {...props}
         onClick={onMeshClick}
         onPointerOver={hover}
         onPointerOut={unhover}
@@ -104,13 +127,4 @@ export const Car = ({ time, ...props }) => {
         </HTML>
       </mesh>
     )
-  }
-
-  return (
-    <group ref={ref}>
-      <group scale={[1, 1, 1]}>
-        <Model />
-      </group>
-    </group>
-  )
-}
+  }*/

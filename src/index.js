@@ -4,8 +4,11 @@ import { Canvas, useFrame, useThree } from "react-three-fiber"
 import * as THREE from "three"
 import { Car } from "./car";
 import { Map } from "./map";
+import { Pines } from "./pines";
 import usePromise from "react-promise-suspense";
 import { HTML, OrbitControls } from "drei";
+import Effects from "./Effects";
+
 import "./styles.css";
 
 const materialDefault = new THREE.MeshPhysicalMaterial({
@@ -73,14 +76,18 @@ function Content() {
   // useFrame(() => (ref.current.rotation.x = ref.current.rotation.y = ref.current.rotation.z += 0.01))
   return (
     <group ref={ref} scale={[3,3,3]}>
-      <Map index={1} time={1000} color="#443333" ></Map>
-      <Car name="Body_0" index={11} time={1000} color="#3344bb" description="Body_0"
+      <Map index={1} time={1000} />
+      <Car name="Body_1" index={2} time={1000} color="#aa3322" description="Body_1"
         colorMenu={[{code:'#bbb533', name:'yellow'},{code:'#bb55b5',name:'purple'},{code:'#cccccc',name:'white'}]}
       />
-      <Car name="Glass" index={12} time={1000} color="#9999bb" description="Glass"
-      />
-      <Car name="Body_1" index={13} time={1000} color="#aa3322" description="Body_1"
+      <Car name="Body_0" index={6} time={100} color="#3344bb" description="Body_0"
         colorMenu={[{code:'#bbb533', name:'yellow'},{code:'#bb55b5',name:'purple'},{code:'#cccccc',name:'white'}]}
+      />
+      <Car name="Tyres" index={4} time={10} color="#222222" description="Tyres"
+        colorMenu={[]}
+      />
+      <Car name="Glass" index={5} time={100} color="#ccccdd" description="Glass"
+        colorMenu={[]}
       />
     </group>
   )
@@ -93,7 +100,8 @@ const Fallback = () => (
 )
 
 ReactDOM.render(
-  <Canvas invalidateFrameloop style={{ background: "#d5d5e5" }} orthographic camera={{ position: [-7, 0, 2] }}>
+  <Canvas invalidateFrameloop style={{ background: "#66AEDA" }} shadowMap
+    orthographic camera={{ near: 150,  zoom: 65, position: [500, 5, 500], fov: 90 }}>
     <OrbitControls
       enableDamping={true}
       dampingFactor={0.25}
@@ -104,19 +112,29 @@ ReactDOM.render(
       enablePan={true}
       panSpeed={0.4}
       minPolarAngle={Math.PI / 4}
-      maxPolarAngle={Math.PI / 2}
+      maxPolarAngle={Math.PI / 2.05}
       minDistance={-500}
       maxDistance={1000}
     />
-    <directionalLight color="white" />
-    <pointLight position={[10, 10, -10]} color="white" />
-    <pointLight position={[-10, -10, 10]} color="white" />
+    <ambientLight color="white" intensity={0.15} />
+    <hemisphereLight skyColor="#b1e1ff" groundColor="#aaaaaa" intensity={1}/>
+    <pointLight position={[30, 50, 30]} color="#aaaaaa" intensity={0.5}/>
+    <pointLight 
+      position={[100, 100, -100]} 
+      color="#aaaaaa" 
+      intensity={0.65} 
+      castShadow 
+      shadow-mapSize-height={1024}
+      shadow-mapSize-width={1024}/>
     <Suspense fallback={<Fallback />}>
       <Content />
     </Suspense>
   </Canvas>,
   document.getElementById("root")
-)
+)/*
+
+    
+    <pointLight position={[0, 100, 0]} color="#ccccbb" intensity={1}/>
 
 /*
 function Content() {

@@ -5,8 +5,9 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
-    "@react-three/drei": "^3.10.2",
+    "@react-three/drei": "4.0.1",
     "drei": "0.0.40",
+    "gltfjsx": "^3.1.4",
     "lerp": "1.0.3",
     "react": "experimental",
     "react-dom": "experimental",
