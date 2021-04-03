@@ -77,6 +77,7 @@ function Content() {
   return (
     <group ref={ref} scale={[3,3,3]}>
       <Map index={1} time={1000} />
+      <Pines index={1} time={1000} />
       <Car name="Body_1" index={2} time={1000} color="#aa3322" description="Body_1"
         colorMenu={[{code:'#bbb533', name:'yellow'},{code:'#bb55b5',name:'purple'},{code:'#cccccc',name:'white'}]}
       />
@@ -100,7 +101,7 @@ const Fallback = () => (
 )
 
 ReactDOM.render(
-  <Canvas invalidateFrameloop style={{ background: "#66AEDA" }} shadowMap
+  <Canvas style={{ background: "#66AEDA" }} shadowMap
     orthographic camera={{ near: 150,  zoom: 65, position: [500, 5, 500], fov: 90 }}>
     <OrbitControls
       enableDamping={true}

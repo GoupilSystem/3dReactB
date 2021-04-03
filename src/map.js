@@ -46,6 +46,7 @@ const glassMaterial = new THREE.MeshStandardMaterial({
 const MapModel = ({ ...props }) => {
   const group = useRef()
   const { nodes, materials } = useLoader(GLTFLoader, '/map.gltf');
+  
   return (
     <group ref={group} {...props} dispose={null}>
       <group position={[-7.76, 3.76, -13.82]} rotation={[-0.26, -0.95, 0.62]} scale={[0.29, 0.29, 0.29]}>
